@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra Historia</title>
+  <style>
+    body {
+      margin: 0;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .contador {
+      font-size: 1.5em;
+      margin-top: 10px;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .arbol {
+      position: relative;
+      width: 200px;
+      height: 300px;
+      background: #8b5a2b;
+      border-radius: 20px 20px 0 0;
+      animation: growTree 3s ease-out forwards;
+      transform-origin: bottom;
+    }
+    .hoja {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #32cd32;
+      border-radius: 50%;
+      opacity: 0;
+      animation: aparecerHoja 1s ease forwards;
+    }
+    .hoja1 { top: -30px; left: 10px; animation-delay: 1s; }
+    .hoja2 { top: -40px; left: 80px; animation-delay: 1.5s; }
+    .hoja3 { top: -30px; right: 10px; animation-delay: 2s; }
+    .mensaje {
+      margin-top: 20px;
+      font-size: 1.2em;
+      max-width: 300px;
+      text-align: center;
+      animation: fadeIn 4s ease-in-out;
+    }
+    @keyframes growTree {
+      from { transform: scaleY(0); }
+      to { transform: scaleY(1); }
+    }
+    @keyframes aparecerHoja {
+      to { opacity: 1; transform: translateY(-5px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Nuestra historia florece</h1>
+  <div class="arbol">
+    <div class="hoja hoja1"></div>
+    <div class="hoja hoja2"></div>
+    <div class="hoja hoja3"></div>
+  </div>
+  <div class="contador" id="contador"></div>
+  <div class="mensaje">Cada hoja, cada día, cada momento... juntos crecemos.</div>
+
+  <script>
+    const fechaInicio = new Date('2024-08-23T00:00:00');
+    function actualizarContador() {
+      const ahora = new Date();
+      const diferencia = ahora - fechaInicio;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferencia / 1000) % 60);
+
+      document.getElementById('contador').innerText =
+        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+    }
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+  </script>
+</body>
+</html>
